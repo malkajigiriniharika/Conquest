@@ -1,0 +1,116 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-image: url('./Images/DashboardBg.jpg');
+    background-size: cover;
+    /* Ensures the image covers the entire navbar */
+    background-position: center;
+    /* Centers the image */
+}
+
+.logo img {
+    width: 40px;
+    /* Adjust the logo size */
+    height: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    /* Make sure the text is visible */
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 10px 15px;
+    /* Add padding to make the links more clickable */
+}
+
+.nav-links a:hover {
+    color: orange;
+    background-color: #555;
+    /* Added background color on hover */
+    border-radius: 5px;
+}
+
+/* Header Section */
+header {
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: orange;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: black;
+}
+
+
+.dashboardContainer {
+    background-image: url('https://www.wallpaperflare.com/static/510/530/531/abstraction-surface-green-shape-wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
