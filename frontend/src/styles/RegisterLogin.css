@@ -9,7 +9,7 @@
     justify-content: center; /* Centers the container horizontally */
   }
 
-  .container {
+  .RegisterLoginContainer {
     width: 400px;
     background: rgba(255, 255, 255, 0.9); /* Transparent white background for visibility */
     border-radius: 10px;
