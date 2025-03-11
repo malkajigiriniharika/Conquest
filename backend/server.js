@@ -1,9 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
+const jwt = require("jsonwebtoken");
 const connectDB = require("./config/db");
 const userTypeDefs = require("./typeDefs/userTypeDefs");
 const userResolvers = require("./resolvers/userResolvers");
+const typeDefs = require("./typeDefs/userTypeDefs");
+
 const authMiddleware = require("./middleware/authMiddleware");
 
 const app = express();

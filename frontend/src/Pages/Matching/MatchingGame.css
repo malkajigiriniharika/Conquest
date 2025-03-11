@@ -1,0 +1,103 @@
+/* General Styling */
+.MatchingBody {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #74ebd5, #acb6e5);
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Title Styling */
+.HeaderMatchinngCss {
+  color: #222;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.ParaMatchingCss {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Matching Game Container */
+.matching-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* Drop Areas */
+.matching-drop-area {
+  width: 30%;
+  min-height: 250px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px dashed #333;
+  background-color: #f8f8f8;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+}
+
+.matching-drop-area:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.03);
+}
+
+.matching-drop-area h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* Drop items inside the categories */
+.matching-drop-area .matching-item {
+  width: 90%;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Drag Items */
+.matching-items-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.matching-item {
+  width: 250px;
+  padding: 12px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 10px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: grab;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+
+.matching-item:hover {
+  transform: scale(1.05);
+  background-color: #f1f1f1;
+}
+
+/* Correct and Incorrect Colors */
+.matching-correct {
+  background-color: #4CAF50 !important;
+  color: #fff;
+}
+
+.matching-incorrect {
+  background-color: #f44336 !important;
+  color: #fff;
+}

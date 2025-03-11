@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const games = [
     { name: "Hangman", imgName: HangMan, link: "https://hangman-gilt-nine.vercel.app/" , cardName:"HangMan"},
     { name: "Memory Cards", imgName: MemoryCard, link: "https://memory-magic-mp.vercel.app/", cardName:"MemoryCard" },
-    { name: "Matching", imgName: Matching },
+    { name: "Matching", imgName: Matching ,cardName:"Matching"},
     { name: "Spin Me", imgName: SpinTheWheel, link: "https://spin-the-wheel-theta.vercel.app/" , cardName:"SpinTheWheel"}
 ];
 
@@ -30,6 +30,7 @@ const GamePage = () => {
                     <a href="#">Environment</a>
                     <a href="#">Fundamental Rights</a>
                     <a href="#">Fundamental Duties</a>
+                    <a onClick={()=>{navigate("/game/Quiz")}}><h3>Quiz</h3></a>
                 </div>
 
                 {/* Main Content */}
