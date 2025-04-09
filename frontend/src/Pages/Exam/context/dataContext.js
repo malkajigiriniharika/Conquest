@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 // import QuizJson from "./quiz.json";
+import { useMutation, useQuery } from "@apollo/client";
+
+import { SCORE_MUTATION, LEADERBOARD_QUERY } from "../../../graphqlServices/AllServices";
 
 const DataContext = createContext({});
 
@@ -17,6 +20,52 @@ export const DataProvider = ({ children }) => {
   const [showStart, setShowStart] = useState(true);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showResult, setShowResult] = useState(false);
+
+  // Display Leaderboard
+  const[leaderBoard, setLeaderBoard] = useState([]);
+
+  // Display timer
+  const [time, setTime] = useState(0); // Time in seconds
+  const [isRunning, setIsRunning] = useState(false);
+
+  const [updateScore, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(SCORE_MUTATION);
+  const { data: queryData, loading: queryLoading, error: queryError, refetch: fetchLeaderBoard } = useQuery(LEADERBOARD_QUERY);
+
+
+  //Displaying and Loading timer
+  useEffect(() => {
+    let timer;
+    if (isRunning && time < 3600) {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+    if (time >= 3600) {
+      setIsRunning(false);
+    }
+    return () => clearInterval(timer);
+  }, [isRunning, time]);
+
+  //format the time:
+  const formatTime = (seconds) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${String(hrs).padStart(2, "0")}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  };
+  //Displaying Leaderboard
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const { data } = await fetchLeaderBoard();
+        setLeaderBoard(data?.getLeaderboard || []);
+      } catch (err) {
+        console.error("Error fetching leaderboard:", err);
+      }
+    };
+  
+    fetchData();
+  },[showStart]);
 
   // ✅ Fisher-Yates shuffle function
   const shuffleArray = (array) => {
@@ -65,6 +114,8 @@ export const DataProvider = ({ children }) => {
     setQuestionIndex(0);
     setShowStart(false);
     setShowQuiz(true);
+    setIsRunning(true);
+
   };
 
   // Set the current question
@@ -101,10 +152,21 @@ export const DataProvider = ({ children }) => {
   };
 
   // Show Result
-  const showTheResult = () => {
+  const showTheResult = async () => {
     setShowResult(true);
     setShowStart(false);
     setShowQuiz(false);
+    setIsRunning(false);
+    try{
+      const email= localStorage.getItem("email");
+      console.log("Email got from local , marks, time "+ email+", "+marks+", "+time);
+      const score =marks;
+      const response = await updateScore({variables:{email,score,time}});
+      console.log(response.data);
+    }
+    catch(err){
+      console.log("Error from update : "+err);
+    }
   };
 
   // Start Over (Resets and picks a new 10-question set)
@@ -121,6 +183,7 @@ export const DataProvider = ({ children }) => {
     document.querySelector("button.bg-danger")?.classList.remove("bg-danger");
     document.querySelector("button.bg-success")?.classList.remove("bg-success");
   };
+
 
   return (
     <DataContext.Provider
@@ -139,6 +202,9 @@ export const DataProvider = ({ children }) => {
         showResult,
         marks,
         startOver,
+        time,
+        formatTime,
+        leaderBoard,
       }}
     >
       {children}

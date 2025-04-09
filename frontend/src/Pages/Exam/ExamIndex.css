@@ -13,6 +13,50 @@ code {
         monospace;
 }
 
+.leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leaderboard-container {
+    border-radius: 12px;
+    box-shadow: 0 0px 10px rgba(120, 120, 120, 50);
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.leaderboard-flex {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+    margin: 0;
+}
+.player {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: 0.3s;
+    color: black;
+}
+.top-1 {
+    background: gold;
+    font-weight: bold;
+}
+.top-2 {
+    background: silver;
+    font-weight: bold;
+}
+.top-3 {
+    background: #cd7f32;
+    font-weight: bold;
+}
+
 #h1Id,
 #h2Id,
 #h3Id {
@@ -23,9 +67,9 @@ code {
 
 .btn,
 .btn-dark,
-.btn-check:focus + .btn-dark,
+.btn-check:focus+.btn-dark,
 .btn-dark:focus,
-.btn-check:focus + .btn,
+.btn-check:focus+.btn,
 .btn:focus {
     border: none;
     box-shadow: none;

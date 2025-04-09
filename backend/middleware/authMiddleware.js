@@ -1,16 +1,25 @@
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req) => {
-  const authHeader = req.headers.authorization;
-  if (authHeader) {
-    const token = authHeader.split(" ")[1];
-    try {
-      return jwt.verify(token, process.env.JWT_SECRET);
-    } catch (err) {
-      throw new Error("Invalid/Expired token");
+  try {
+    // console.log("Request Headers:");
+    let Authtoken = "";
+    Object.entries(req.rawHeaders).forEach(([key, value]) => {
+      if (value.startsWith("Bearer ")) {
+        Authtoken = value.split(" ")[1];
+      }
+    });
+
+    if (Authtoken == "") {
+      console.warn("Authentication failed: No valid token provided");
+      return null;
     }
+
+    return jwt.verify(Authtoken, process.env.JWT_SECRET); // Return decoded token directly
+  } catch (err) {
+    console.error("Authentication failed:", err.message);
+    return null;
   }
-  return null;
 };
 
 module.exports = authMiddleware;

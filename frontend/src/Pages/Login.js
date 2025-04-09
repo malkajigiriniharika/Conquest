@@ -25,6 +25,9 @@ export default function Login() {
         
         if(response.data.login.token)
         {
+          console.log("Login :::"+response.data.login.user.email);
+          localStorage.setItem("email",response.data.login.user.email);
+          localStorage.setItem("username",response.data.login.user.username);
           localStorage.setItem("token",response.data.login.token);
           alert("Logined Successfully..!");
           navigate("/Dashboard");
